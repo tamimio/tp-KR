@@ -1,42 +1,81 @@
 #include <iostream>
+#include <list>
+#include <fstream>
 #include "Factory.h"
 
 using namespace std;
 
 int main()
 {
+	// clear cat, dog txt
+
 	CatFactory cat;   
 	DogFactory dog;
 	MouseFactory mouse;
 	HorseFactory horse;
 	SnakeFactory snake;
 	FishFactory fish;
- 
-	Factory *ptr1 = &cat;
-	Factory *ptr2 = &dog;
-	Factory *ptr3 = &mouse;
-	Factory *ptr4 = &horse;
-	Factory *ptr5 = &snake;
-	Factory *ptr6 = &fish;
- 
-	Animal *ObjectNature1 = foo(ptr1);
-	Animal *ObjectNature2 = foo(ptr2);
-	Animal *ObjectNature3 = foo(ptr3);
-	Animal *ObjectNature4 = foo(ptr4);
-	Animal *ObjectNature5 = foo(ptr5);
-	Animal *ObjectNature6 = foo(ptr6);
- 
-	ObjectNature1->info();
-	ObjectNature2->info();
-	ObjectNature3->info();
-	ObjectNature4->info();
-	ObjectNature5->info();
-	ObjectNature6->info();
- 
-	delete ObjectNature1;
-	delete ObjectNature2;
-	delete ObjectNature3;
-	delete ObjectNature4;
-	delete ObjectNature5;
-	delete ObjectNature6; 
+
+	list <Animal*> ani;
+
+	bool add=1;
+	do
+	//for (int i=0; i<1; i++)
+	{
+		Factory *ptr;
+		int c;
+		cout<<"Input animal 1,2 ";
+		cin>>c;
+		switch (c)
+		{
+		case 1: { ptr = &cat; break; }
+		case 2: { ptr = &dog; break; }
+		default: { ptr = &cat; break;}
+		}
+
+			Animal *ObjectNature = foo(ptr);
+
+			cout<<"Input type of inp ";
+			cin>>c;
+			if (c==1) ObjectNature->set();
+			else 
+				{
+					string fname;
+					cout<<"Input file name -> ";
+					cin>>fname;
+					ifstream fpin (fname);
+					if (!fpin) cout << "File not found" << endl;
+
+					ObjectNature->set(fpin);
+					fpin.close();
+			}
+
+			ani.push_back(ObjectNature);
+
+			// do you want to add animal
+			cout<<"Do you want to add another animal? (0\1) -> ";
+			cin>>add;
+	} while (add);
+	
+	  for (auto v : ani)
+	  {
+		v->info(); v->Show();
+		if (v->getType()=="cat")
+		{
+			ofstream fpout;
+			fpout.open("cat.txt", ios::app);
+			//fpout<<
+			fpout.close();
+		}
+		else if (v->getType()=="dog")
+		{
+			ofstream fpout;
+			fpout.open("dog.txt", ios::app);
+			//fpout<<
+			fpout.close();
+		}
+	  }
+
+
+
 }
