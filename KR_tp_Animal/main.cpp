@@ -18,48 +18,61 @@ int main()
 
 	list <Animal*> ani;
 
+
 	bool add=1;
 	do
-	//for (int i=0; i<1; i++)
 	{
-		Factory *ptr;
+		Factory *factory;
+
+		cout<<"Input type of animal"<<endl
+			<<"1-cat, 2-dog, 3-mouse, 4-horse, 5-snake, 6-fish"<<endl
+			<<"-> ";
 		int c;
-		cout<<"Input animal 1,2 ";
 		cin>>c;
 		switch (c)
 		{
-		case 1: { ptr = &cat; break; }
-		case 2: { ptr = &dog; break; }
-		default: { ptr = &cat; break;}
+			case animal_type_cat: { factory = &cat; break; }
+			case animal_type_dog: { factory = &dog; break; }
+			case animal_type_mouse: { factory = &mouse; break; }
+			case animal_type_horse: { factory = &horse; break; }
+			case animal_type_snake: { factory = &snake; break; }
+			case animal_type_fish: { factory = &fish; break; }
+			default: { throw ("Incorrect type of animal"); break;}
 		}
 
-			Animal *ObjectNature = foo(ptr);
+		Animal *ObjectAnimal = CreateAnimal(factory);
 
-			cout<<"Input type of inp ";
-			cin>>c;
-			if (c==1) ObjectNature->set();
-			else 
+		cout<<"Input type of adding data"<<endl
+			<<"1-console, 2-file"<<endl
+			<<"-> ";
+		cin>>c;
+		switch (c)
+		{
+			case 1: { ObjectAnimal->Read(); break; }
+			case 2:
 				{
 					string fname;
 					cout<<"Input file name -> ";
 					cin>>fname;
 					ifstream fpin (fname);
-					if (!fpin) cout << "File not found" << endl;
-
-					ObjectNature->set(fpin);
+					if (!fpin) throw ("File not found");
+					ObjectAnimal->Read(fpin);
 					fpin.close();
-			}
+				}
+		}
 
-			ani.push_back(ObjectNature);
+		ani.push_back(ObjectAnimal);
 
-			// do you want to add animal
-			cout<<"Do you want to add another animal? (0\1) -> ";
-			cin>>add;
+		cout<<"Do you want to add another animal? (0/1) -> ";
+		cin>>add;
 	} while (add);
 	
-	  for (auto v : ani)
-	  {
-		v->info(); v->Show();
+
+
+
+	for (auto v : ani)
+	{
+		v->Print();
 		if (v->getType()=="cat")
 		{
 			ofstream fpout;
@@ -74,8 +87,35 @@ int main()
 			//fpout<<
 			fpout.close();
 		}
-	  }
-
+		else if (v->getType()=="mouse")
+		{
+			ofstream fpout;
+			fpout.open("mouse.txt", ios::app);
+			//fpout<<
+			fpout.close();
+		}
+		else if (v->getType()=="horse")
+		{
+			ofstream fpout;
+			fpout.open("horse.txt", ios::app);
+			//fpout<<
+			fpout.close();
+		}
+		else if (v->getType()=="snake")
+		{
+			ofstream fpout;
+			fpout.open("snake.txt", ios::app);
+			//fpout<<
+			fpout.close();
+		}
+		else if (v->getType()=="fish")
+		{
+			ofstream fpout;
+			fpout.open("fish.txt", ios::app);
+			//fpout<<
+			fpout.close();
+		}
+	}
 
 
 }

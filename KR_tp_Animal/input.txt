@@ -1,3 +1,7 @@
 poroda1
 col1
 name1
+f
+nb
+bn
+bn

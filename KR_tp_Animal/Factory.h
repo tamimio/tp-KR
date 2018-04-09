@@ -46,7 +46,7 @@ class FishFactory : public Factory
 		Animal* Create(){ return new Fish; }
 };
 
-Animal* foo(Factory *value)
+Animal* CreateAnimal(Factory *value)
 {
     return value->Create(); 
 }
