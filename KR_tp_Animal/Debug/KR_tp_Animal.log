@@ -1,8 +1,9 @@
-﻿Построение начато 09.04.2018 23:34:44.
+﻿Построение начато 21.04.2018 18:50:58.
      1>Проект "C:\Users\usera\Documents\Visual Studio 2012\Projects\3.6 Kursovik_tp\KR_tp_Animal\KR_tp_Animal\KR_tp_Animal.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          D:\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
+     1>c:\users\usera\documents\visual studio 2012\projects\3.6 kursovik_tp\kr_tp_animal\kr_tp_animal\animal.h(55): warning C4715: Animal::type2str: значение возвращается не при всех путях выполнения
        Link:
          D:\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\usera\Documents\Visual Studio 2012\Projects\3.6 Kursovik_tp\KR_tp_Animal\Debug\KR_tp_Animal.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\usera\Documents\Visual Studio 2012\Projects\3.6 Kursovik_tp\KR_tp_Animal\Debug\KR_tp_Animal.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\usera\Documents\Visual Studio 2012\Projects\3.6 Kursovik_tp\KR_tp_Animal\Debug\KR_tp_Animal.lib" /MACHINE:X86 Debug\main.obj
          KR_tp_Animal.vcxproj -> C:\Users\usera\Documents\Visual Studio 2012\Projects\3.6 Kursovik_tp\KR_tp_Animal\Debug\KR_tp_Animal.exe
@@ -10,4 +11,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:04.28
+Затраченное время: 00:00:04.82

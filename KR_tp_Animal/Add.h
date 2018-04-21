@@ -1,7 +1,8 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-// Структура Дата DD.MM.YYYY
+#include <cstring>
+
 struct Date
 {
 	int Day, Month, Year;
@@ -14,31 +15,26 @@ struct Date
 		if ((y<1700)||(y>2200)) throw ("Incorrect year");
 	}
 
-	bool operator==(const Date &d) const
+	/*bool operator==(const Date &d) const
 	{ // для поиска по дате
 		return (Day == d.Day)
 			&& (Month == d.Month)
 			&& (Year == d.Year);
-	}
+	}*/
 };
-// ----------------------------------------------------------------------------
-// Операторы ввода/вывода Даты в поток
+
 std::istream & operator>>(std::istream &is, Date &d)
 {
-	char dot; // между числами сюда считывается точка (любой разделитель)
-	try
-	{
-		is >> d.Day >> dot >> d.Month >> dot >> d.Year;
+	char dot; 
 
-		if ((d.Day<1)||(d.Day>31))
-			throw ("Incorrect day");
-		if ((d.Month<1)||(d.Month>12))
-			throw ("Incorrect month");
-		if ((d.Year<1700)||(d.Year>2200))
-			throw ("Incorrect year");
-	}
-	catch (char * err)
-	{ std::cout << err << std::endl; }
+	is >> d.Day >> dot >> d.Month >> dot >> d.Year;
+
+	if ((d.Day<1)||(d.Day>31))
+		throw ("Incorrect day");
+	if ((d.Month<1)||(d.Month>12))
+		throw ("Incorrect month");
+	if ((d.Year<1700)||(d.Year>2200))
+		throw ("Incorrect year");
 
 	return is;
 }
@@ -48,6 +44,7 @@ std::ostream & operator<<(std::ostream &os, const Date &d)
 		<< '.' << std::setfill('0') << std::setw(2) << d.Month
 		<< '.' << d.Year;
 }
+
 //-----------------------------------------------------------------------------
 
 struct Razmery
@@ -60,3 +57,22 @@ struct Razmery
 	Razmery(float l, float h, float w) : length(l), height(h), weight(w){}
 
 };
+
+std::istream & operator>>(std::istream &is, Razmery &r)
+{
+	is >> r.length >> r.height >> r.weight;
+	return is;
+}
+std::ostream & operator<<(std::ostream &os, const Razmery &r)
+{
+	return os << r.length << ' ' << r.height << ' ' << r.weight;
+}
+
+//-----------------------------------------------------------------------------
+
+void clrFile(std::string fname)
+{
+	std::ofstream ofs;
+	ofs.open(fname, std::ofstream::out | std::ofstream::trunc);
+	ofs.close();
+}

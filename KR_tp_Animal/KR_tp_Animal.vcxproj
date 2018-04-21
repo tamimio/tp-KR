@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Add.h" />
+    <ClInclude Include="AnimalManager.h" />
     <ClInclude Include="Factory.h" />
   </ItemGroup>
   <ItemGroup>

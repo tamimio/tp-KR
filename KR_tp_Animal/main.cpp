@@ -1,10 +1,45 @@
 #include <iostream>
 #include <list>
 #include <fstream>
-#include "Factory.h"
+#include "AnimalManager.h"
 
 using namespace std;
 
+void showMainMenu()
+{
+		cout<<"--- Animal Manager ---"<<endl
+		<<"1 - Add animals to list"<<endl
+		<<"2 - Show animal list"<<endl
+		<<"3 - Save animal list into separate files"<<endl
+		<<"0 - Exit"<<endl
+		<<"-> ";
+}
+
+int main()
+{
+	AnimalManager Animals;
+
+	showMainMenu();
+	int c;
+	cin>>c;
+	do
+	{
+		switch (c)
+		{
+			case 1: { Animals.Add(); cout<<"Done"<<endl; break; }
+			case 2: { Animals.Show(); cout<<"Done"<<endl; break; }
+			case 3: { Animals.SaveToFile("cat.txt", "dog.txt", "mouse.txt", "horse.txt", "snake.txt", "fish.txt"); cout<<"Done"<<endl; break; }
+			case 0: { cout<<"Exiting program..."<<endl; return 0; }
+		}
+		system("pause");
+		system ("cls");
+		showMainMenu();
+		cin>>c;
+	} while (c!=0);
+
+	return 0;
+}
+/*
 int main()
 {
 	// clear cat, dog txt
@@ -25,7 +60,7 @@ int main()
 		Factory *factory;
 
 		cout<<"Input type of animal"<<endl
-			<<"1-cat, 2-dog, 3-mouse, 4-horse, 5-snake, 6-fish"<<endl
+			<<"0-cat, 1-dog, 2-mouse, 3-horse, 4-snake, 5-fish"<<endl
 			<<"-> ";
 		int c;
 		cin>>c;
@@ -77,45 +112,45 @@ int main()
 		{
 			ofstream fpout;
 			fpout.open("cat.txt", ios::app);
-			//fpout<<
+			v->Print(fpout);
 			fpout.close();
 		}
 		else if (v->getType()=="dog")
 		{
 			ofstream fpout;
 			fpout.open("dog.txt", ios::app);
-			//fpout<<
+			v->Print(fpout);
 			fpout.close();
 		}
 		else if (v->getType()=="mouse")
 		{
 			ofstream fpout;
 			fpout.open("mouse.txt", ios::app);
-			//fpout<<
+			v->Print(fpout);
 			fpout.close();
 		}
 		else if (v->getType()=="horse")
 		{
 			ofstream fpout;
 			fpout.open("horse.txt", ios::app);
-			//fpout<<
+			v->Print(fpout);
 			fpout.close();
 		}
 		else if (v->getType()=="snake")
 		{
 			ofstream fpout;
 			fpout.open("snake.txt", ios::app);
-			//fpout<<
+			v->Print(fpout);
 			fpout.close();
 		}
 		else if (v->getType()=="fish")
 		{
 			ofstream fpout;
 			fpout.open("fish.txt", ios::app);
-			//fpout<<
+			v->Print(fpout);
 			fpout.close();
 		}
 	}
 
 
-}
+}*/
