@@ -11,7 +11,8 @@ class AnimalManager
 
 	public:
 		void Add();
-		void SaveToFile(string fcat, string fdog, string fmouse, string fhorse, string fsnake, string ffish);
+		void SaveToFile(string fcat, string fdog, string fmouse,
+						string fhorse, string fsnake, string ffish);
 		void Show();
 };
 
@@ -27,14 +28,15 @@ void AnimalManager::Add()
 	bool add=1;
 	do
 	{
+		bool del=false;
 		Factory *factory;
 
 		cout<<"Input type of animal"<<endl
 			<<"0-cat, 1-dog, 2-mouse, 3-horse, 4-snake, 5-fish"<<endl
 			<<"-> ";
-		int c;
-		cin>>c;
-		switch (c)
+		int choice_animal;
+		cin>>choice_animal;
+		switch (choice_animal)
 		{
 			case animal_type_cat: { factory = &cat; break; }
 			case animal_type_dog: { factory = &dog; break; }
@@ -48,38 +50,52 @@ void AnimalManager::Add()
 		Animal *ObjectAnimal = CreateAnimal(factory);
 
 		cout<<"Input type of adding data"<<endl
-			<<"1-console, 2-file"<<endl
+			<<"c - console, f - file"<<endl
 			<<"-> ";
-		cin>>c;
-		switch (c)
+		char choice_input;
+		cin>>choice_input;
+		switch (choice_input)
 		{
-			case 1:
+			case 'c':
 				{
 					ObjectAnimal->Read();
 					break; 
 				}
-			case 2:
+			case 'f':
 				{
 					string fname;
 					cout<<"Input file name -> ";
 					cin>>fname;
 					ifstream fpin (fname+".txt");
-					if (!fpin) throw ("File not found");
 					try
 					{
+						if (!fpin) throw ("File not found");
 						ObjectAnimal->Read(fpin);
 					}
 					catch (char * err)
 					{
-						cout<<err<<endl<<"Closing file."<<endl;;
+						cout<<err<<endl<<"Closing file."<<endl;
+						del=true;
 					}
 					fpin.close();
 					break;
+				}
+			default:
+				{
+					cout<<"Incorrect symbol."<<endl;
+					del=true;
 				}
 		}
 
 		ani.push_back(ObjectAnimal);
 
+		if (del)
+		{
+			cout<<"Deleting this animal."<<endl;
+			ani.pop_back(); 
+			del=false;
+		}
+		
 		cout<<"Do you want to add another animal? (0/1) -> ";
 		cin>>add;
 	} while (add);
@@ -87,10 +103,16 @@ void AnimalManager::Add()
 
 void AnimalManager::Show()
 {
-	for (auto v : ani) v->Print(); 
+	for (auto v : ani)
+	{
+		cout<<"--------------------"<<endl;
+		v->Print(); 
+		cout<<"--------------------"<<endl;
+	}
 }
 
-void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse, string fhorse, string fsnake, string ffish)
+void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
+							   string fhorse, string fsnake, string ffish)
 {
 	bool clr;
 	cout<<"Do you want to clear files first? (0/1) -> ";
@@ -110,7 +132,7 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse, string f
 		}
 		else if (v->getType()==animal_type_dog)
 		{
-			if (clear[animal_type_dog]) { clrFile(fcat); clear[animal_type_dog]=false; }
+			if (clear[animal_type_dog]) { clrFile(fdog); clear[animal_type_dog]=false; }
 			ofstream fpout;
 			fpout.open(fdog, ios::app);
 			v->Print(fpout);
@@ -118,7 +140,7 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse, string f
 		}
 		else if (v->getType()==animal_type_mouse)
 		{
-			if (clear[animal_type_mouse]) { clrFile(fcat); clear[animal_type_mouse]=false; }
+			if (clear[animal_type_mouse]) { clrFile(fmouse); clear[animal_type_mouse]=false; }
 			ofstream fpout;
 			fpout.open(fmouse, ios::app);
 			v->Print(fpout);
@@ -126,7 +148,7 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse, string f
 		}
 		else if (v->getType()==animal_type_horse)
 		{
-			if (clear[animal_type_horse]) { clrFile(fcat); clear[animal_type_horse]=false; }
+			if (clear[animal_type_horse]) { clrFile(fhorse); clear[animal_type_horse]=false; }
 			ofstream fpout;
 			fpout.open(fhorse, ios::app);
 			v->Print(fpout);
@@ -134,7 +156,7 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse, string f
 		}
 		else if (v->getType()==animal_type_snake)
 		{
-			if (clear[animal_type_snake]) { clrFile(fcat); clear[animal_type_snake]=false; }
+			if (clear[animal_type_snake]) { clrFile(fsnake); clear[animal_type_snake]=false; }
 			ofstream fpout;
 			fpout.open(fsnake, ios::app);
 			v->Print(fpout);
@@ -142,7 +164,7 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse, string f
 		}
 		else if (v->getType()==animal_type_fish)
 		{
-			if (clear[animal_type_fish]) { clrFile(fcat); clear[animal_type_fish]=false; }
+			if (clear[animal_type_fish]) { clrFile(ffish); clear[animal_type_fish]=false; }
 			ofstream fpout;
 			fpout.open(ffish, ios::app);
 			v->Print(fpout);

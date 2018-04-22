@@ -1,7 +1,11 @@
+// Additional elements: struct Date, struct Razmery, clrFile func
+
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <cstring>
+
+//-----------------------------------------------------------------------------
 
 struct Date
 {
@@ -14,13 +18,6 @@ struct Date
 		if ((m<1)||(m>12)) throw ("Incorrect month");
 		if ((y<1700)||(y>2200)) throw ("Incorrect year");
 	}
-
-	/*bool operator==(const Date &d) const
-	{ // для поиска по дате
-		return (Day == d.Day)
-			&& (Month == d.Month)
-			&& (Year == d.Year);
-	}*/
 };
 
 std::istream & operator>>(std::istream &is, Date &d)
@@ -55,7 +52,6 @@ struct Razmery
 
 	Razmery() {}
 	Razmery(float l, float h, float w) : length(l), height(h), weight(w){}
-
 };
 
 std::istream & operator>>(std::istream &is, Razmery &r)

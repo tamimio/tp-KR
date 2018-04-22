@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-
 #include "Add.h"
 
 using namespace std;
@@ -53,25 +52,37 @@ string Animal::type2str()
 		case animal_type_fish: return "fish";
 	}
 }
+
 void Animal::Read (istream &is)
 {
-	if (is==cin) cout<<"Input poroda -> ";
-	is>>poroda;
+	if (is==cin) is.ignore(std::numeric_limits<size_t>::max(), '\n');
+	is.clear();
+	if (is==cin) cout<<"Input poroda -> ";	
+	getline(is, poroda); 
+	is.clear();
 	if (is==cin) cout<<"Input colour -> ";
-	is>>colour;
+	getline(is, colour);
+	is.clear();
 	if (is==cin) cout<<"Input name -> ";
-	is>>name;
+	getline(is, name);
+	is.clear();
 
 	for (int i=0; i<1; ++i)
 	{
-		if (is==cin) cout<<"Input gender (f/m) -> ";
-		char c;
-		is>>c;
-		if (c=='f') gender=gen_fem;
-		else if (c=='m') gender=gen_male;
+		if (is==cin) cout<<"Input gender (f/m or æ/ì) -> ";
+		string c;
+		getline(is,c); 
+		is.clear();
+		if (strcmp(c.c_str(),"f") || strcmp(c.c_str(),"æ")) gender=gen_fem;
+		else if (strcmp(c.c_str(),"m") || strcmp(c.c_str(),"ì")) gender=gen_male;
 		else
 		{
-			if (is==cin) {system("cls"); cout<<"Incorrect gender. Try again."<<endl; i--;}
+			if (is==cin)
+			{
+				system("cls");
+				cout<<"Incorrect gender. Try again."<<endl;
+				i--;
+			}
 			else throw ("Error reading file. Incorrect gender.");
 		}
 	}
@@ -88,16 +99,21 @@ void Animal::Read (istream &is)
 		if (is==cin) {cout<<"Try again."<<endl; i--;}
 			else throw ("Error reading file. Incorrect date.");
 	}
-	if (is==cin) cout<<"Input razmery (len hei wei) -> ";
+	if (is==cin) cout<<"Input razmery (lenght height weight) -> ";
 	is>>razm;
 
+	is.ignore(std::numeric_limits<size_t>::max(), '\n');
 	if (is==cin) cout<<"Input owner's name -> ";
-	is>>ownerName;
-	if (is==cin) cout<<"Input name of pitomnik -> ";
-	is>>pitomnik;
+	getline(is, ownerName);
+	is.clear();
+	if (is==cin) cout<<"Input pitomnik -> ";
+	getline(is, pitomnik);
+	is.clear();
 	if (is==cin) cout<<"Input character -> ";
-	is>>character;
+	getline(is, character);
+	is.clear();
 }
+
 void Animal::Print(ostream &os)
 {
 	if(os==cout) { cout<<"Type: "; cout<<type2str()<<endl;}
@@ -121,19 +137,18 @@ void Animal::Print(ostream &os)
 		os<<character<<endl;
 }
 
-
 //-----------------------------------------------------------------------------
 
 class Cat : public Animal
 {
 	public:
-		void Read(istream &is=cin) { Animal::Read(is); type=animal_type_cat; }
+		void Read(istream &is=cin) { type=animal_type_cat;  Animal::Read(is); }
 };
 
 class Dog : public Animal
 {
 	public:
-		void Read(istream &is=cin) { Animal::Read(is); type=animal_type_dog; }
+		void Read(istream &is=cin) { type=animal_type_dog;  Animal::Read(is); }
 };
 
 class Mouse : public Animal
@@ -159,4 +174,3 @@ class Fish : public Animal
 	public:
 		void Read(istream &is=cin) { Animal::Read(is); type=animal_type_fish; }
 };
-
