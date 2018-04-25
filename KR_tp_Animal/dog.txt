@@ -1,9 +1,18 @@
-nemeckaja ovcharka
-yellow-black
-Mike
-f
+немецкая овчарка
+бежевый, коричневый
+Майкл
+m
 25.02.2015
 1.05 0.58 0.34
-Ivanov Ivan Ivanovich
-Nevskij Pitomec
-Predannyj, igrivyj
+Иванов Иван Иванович
+Невский Питомец
+Преданный, игривый
+dachshund
+brown and black
+Kiki
+f
+24.10.2016
+1.65 0.48 0.22
+William Robinson
+Safe'n'Sound
+Calm, quiet

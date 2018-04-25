@@ -14,6 +14,7 @@ class AnimalManager
 		void SaveToFile(string fcat, string fdog, string fmouse,
 						string fhorse, string fsnake, string ffish);
 		void Show();
+		int Number() { return ani.size(); }
 };
 
 void AnimalManager::Add()
@@ -117,14 +118,20 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
 	bool clr;
 	cout<<"Do you want to clear files first? (0/1) -> ";
 	cin>>clr;
-	bool clear[6];
-	for (int i=0; i<6; i++) clear[i]=clr;
+	if (clr)
+	{
+		clrFile(fcat);
+		clrFile(fdog);
+		clrFile(fmouse);
+		clrFile(fhorse);
+		clrFile(fsnake);
+		clrFile(ffish);
+	}
 
 	for (auto v : ani)
 	{
 		if (v->getType()==animal_type_cat)
 		{
-			if (clear[animal_type_cat]) { clrFile(fcat); clear[animal_type_cat]=false; }
 			ofstream fpout;
 			fpout.open(fcat, ios::app);
 			v->Print(fpout);
@@ -132,7 +139,6 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
 		}
 		else if (v->getType()==animal_type_dog)
 		{
-			if (clear[animal_type_dog]) { clrFile(fdog); clear[animal_type_dog]=false; }
 			ofstream fpout;
 			fpout.open(fdog, ios::app);
 			v->Print(fpout);
@@ -140,7 +146,6 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
 		}
 		else if (v->getType()==animal_type_mouse)
 		{
-			if (clear[animal_type_mouse]) { clrFile(fmouse); clear[animal_type_mouse]=false; }
 			ofstream fpout;
 			fpout.open(fmouse, ios::app);
 			v->Print(fpout);
@@ -148,7 +153,6 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
 		}
 		else if (v->getType()==animal_type_horse)
 		{
-			if (clear[animal_type_horse]) { clrFile(fhorse); clear[animal_type_horse]=false; }
 			ofstream fpout;
 			fpout.open(fhorse, ios::app);
 			v->Print(fpout);
@@ -156,7 +160,6 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
 		}
 		else if (v->getType()==animal_type_snake)
 		{
-			if (clear[animal_type_snake]) { clrFile(fsnake); clear[animal_type_snake]=false; }
 			ofstream fpout;
 			fpout.open(fsnake, ios::app);
 			v->Print(fpout);
@@ -164,7 +167,6 @@ void AnimalManager::SaveToFile(string fcat, string fdog, string fmouse,
 		}
 		else if (v->getType()==animal_type_fish)
 		{
-			if (clear[animal_type_fish]) { clrFile(ffish); clear[animal_type_fish]=false; }
 			ofstream fpout;
 			fpout.open(ffish, ios::app);
 			v->Print(fpout);

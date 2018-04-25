@@ -1,4 +1,4 @@
-﻿Построение начато 22.04.2018 14:46:28.
+﻿Построение начато 24.04.2018 22:37:20.
      1>Проект "C:\Users\usera\Documents\Visual Studio 2012\Projects\3.6 Kursovik_tp\KR_tp_Animal\KR_tp_Animal\KR_tp_Animal.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          D:\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
@@ -11,4 +11,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:04.95
+Затраченное время: 00:00:07.84

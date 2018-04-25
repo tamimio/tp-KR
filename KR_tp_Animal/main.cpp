@@ -6,10 +6,11 @@ using namespace std;
 void showMainMenu()
 {
 		cout<<"--- Animal Manager ---"<<endl
+		<<"0 - Exit"<<endl
 		<<"1 - Add animals to list"<<endl
 		<<"2 - Show animal list"<<endl
-		<<"3 - Save list into separate files"<<endl
-		<<"0 - Exit"<<endl
+		<<"3 - Show number of animals in list"<<endl	
+		<<"4 - Save list into separate files"<<endl
 		<<"-> ";
 }
 
@@ -20,21 +21,21 @@ int main()
 
 	showMainMenu();
 	int c;
-	cin>>c;
 	do
 	{
+		cin>>c;
 		switch (c)
 		{
 			case 1: { Animals.Add(); cout<<"Animals added."<<endl; break; }
-			case 2: { Animals.Show(); cout<<"End of list."<<endl; break; }
-			case 3: { Animals.SaveToFile("cat.txt", "dog.txt", "mouse.txt", "horse.txt", "snake.txt", "fish.txt"); cout<<"Saved."<<endl; break; }
-			case 0: { return 0; }
+			case 2: { cout<<"Top of list."<<endl; Animals.Show(); cout<<"End of list."<<endl; break; }
+			case 3: { cout<<"Number of animals in list: "<<Animals.Number()<<endl; break;}					
+			case 4: { Animals.SaveToFile("cat.txt", "dog.txt", "mouse.txt", "horse.txt", "snake.txt", "fish.txt"); cout<<"Saved."<<endl; break; }
+			case 0: { cout<<"Exiting program."<<endl; return 0; }
 		}
 		system("pause");
 		system ("cls");
-		showMainMenu();
-		cin>>c;
-	} while (c!=0);
+		showMainMenu();		
+	} while (1);
 
 	return 0;
 }

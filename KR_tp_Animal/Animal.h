@@ -73,8 +73,8 @@ void Animal::Read (istream &is)
 		string c;
 		getline(is,c); 
 		is.clear();
-		if (strcmp(c.c_str(),"f") || strcmp(c.c_str(),"æ")) gender=gen_fem;
-		else if (strcmp(c.c_str(),"m") || strcmp(c.c_str(),"ì")) gender=gen_male;
+		if (strcmp(c.c_str(),"f")==0 || strcmp(c.c_str(),"æ")==0) gender=gen_fem;
+		else if (strcmp(c.c_str(),"m")==0 || strcmp(c.c_str(),"ì")==0) gender=gen_male;
 		else
 		{
 			if (is==cin)
@@ -95,9 +95,13 @@ void Animal::Read (istream &is)
 	}
 	catch(char * err)
 	{
-		cout<<err<<endl;
-		if (is==cin) {cout<<"Try again."<<endl; i--;}
-			else throw ("Error reading file. Incorrect date.");
+		if (is==cin)
+		{
+			system("cls");			
+			cout<<err<<" Try again."<<endl; 
+			i--;
+		}
+		else throw ("Error reading file. Incorrect date.");
 	}
 	if (is==cin) cout<<"Input razmery (lenght height weight) -> ";
 	is>>razm;
